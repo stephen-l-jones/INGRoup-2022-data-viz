@@ -1,12 +1,12 @@
-#devtools::install_github("stephen-l-jones/colorsafe")
-
 library(colorsafe)
+library(cowplot)
 library(dplyr)
 library(ggforce)
 library(ggplot2)
-library(ggnetwork)
-library(igraph)
 library(showtext)
+library(scales)
 library(stringr)
+library(tidyr)
 
 source("R/ggplot_theme.R")
+source("R/utils.R")
