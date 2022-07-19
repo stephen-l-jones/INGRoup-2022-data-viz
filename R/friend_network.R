@@ -1,6 +1,4 @@
-# Load network data
 load("data/friend_network.rda")
-friend_network <- friend_network %>% as_tibble()
 
 # Calculate individual centrality and team density, order by density, and create team label factor
 midpoint_network <- friend_network %>%
@@ -38,8 +36,8 @@ beziers <- edges %>%
   group_by(team_label, ego_id, alter_id) %>%
   summarize(friendship, same_gender, x = c(x, 0, xend), y = c(y, 0, yend))
 
-# Create network plot (a)
-p1a <- ggplot(nodes) +
+# Create network plot 1
+p1 <- ggplot(nodes) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.2), color = NA, fill = "grey95") +
   geom_bezier(aes(x = x, y = y, group = paste(team_label, ego_id, alter_id), size = friendship),
               data = beziers) +
@@ -53,10 +51,11 @@ p1a <- ggplot(nodes) +
                 legend.position = c(1,0),
                 legend.justification = c(1,0),
                 legend.key.height = unit(4, "mm"))
-showtext::showtext_auto()
-print(p1a)
-ggsave_showtext("plot/Friendship network (a).png", width = 10, height = 5)
-showtext::showtext_auto(enable = FALSE)
+
+showtext_auto()
+print(p1)
+ggsave_showtext("plot/friend_network_1.png", width = 10, height = 5)
+showtext_auto(enable = FALSE)
 
 # Recreate without ordering by density and centrality
 nodes <- midpoint_network %>%
@@ -80,8 +79,8 @@ beziers <- edges %>%
   group_by(team_label, ego_id, alter_id) %>%
   summarize(friendship, same_gender, x = c(x, 0, xend), y = c(y, 0, yend))
 
-# Create network plot (b)
-p1b <- ggplot(nodes) +
+# Create network plot 2
+p2 <- ggplot(nodes) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.2), color = NA, fill = "grey95") +
   geom_bezier(aes(x = x, y = y, group = paste(team_label, ego_id, alter_id), size = friendship),
               data = beziers) +
@@ -95,7 +94,8 @@ p1b <- ggplot(nodes) +
                 legend.position = c(1,0),
                 legend.justification = c(1,0),
                 legend.key.height = unit(4, "mm"))
-showtext::showtext_auto()
-print(p1b)
-ggsave_showtext("plot/Friendship network (b).png", width = 10, height = 5)
-showtext::showtext_auto(enable = FALSE)
+
+showtext_auto()
+print(p2)
+ggsave_showtext("plot/friend_network_2.png", width = 10, height = 5)
+showtext_auto(enable = FALSE)

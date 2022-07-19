@@ -1,5 +1,4 @@
 load("data/nba_player_game.rda")
-nba_player_game <- nba_player_game %>% as_tibble()
 
 nba_team_game <- nba_player_game %>%
   group_by(team_code, year) %>%
@@ -40,4 +39,11 @@ nba_team_game <- nba_player_game %>%
   )
 
 save(nba_team_game, file = "data/nba_team_game.rda")
+nba_team_game %>%
+  dplyr::filter(year > 2013) %>%
+  group_by(team_name, team_code, season, year) %>%
+  summarise(pct_win     = sum(is_win) / max(game_number),
+            salary_team = salary_team[1]) %>%
+  mutate(season_3 = ifelse(year <= 2016, "2013-16", ifelse(year <= 2019, "2016-19", "2019-22"))) %>%
+  write.csv(file = "data/nba_salary_wins.csv", row.names = FALSE, na = "")
 
