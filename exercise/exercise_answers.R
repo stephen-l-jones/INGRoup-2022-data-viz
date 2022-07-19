@@ -66,7 +66,7 @@ p <- ggplot(nba_team_game) +
   theme_basic_no_grid(axis.line.y = element_blank(),
                       axis.ticks.y = element_blank())
 print(p)
-ggsave("plot/exercise_4.png", width = 5, height = 5)
+ggsave("exercise/exercise_4.png", width = 5, height = 5)
 
 # Exercise 5. Three-pointers and game wins
 p <- ggplot(field_goals_3pt) +
