@@ -4,7 +4,7 @@
 # Directions:
 # 1. Read the CSV file 'data/nba_salary_wins.csv' and convert salary from thousands to millions,
 #    and highlight the Lakers (LAL), Cavaliers (CLE), and Phoenix Suns (PHX).
-# 2. Create a path plot. Place pct_win on the y-axis and salary_team on the x-axis 
+# 2. Create a connected scatterplot. Place pct_win on the y-axis and salary_team on the x-axis 
 #    and create a path using geom_path that connects year 2014 through 2022. Give each focus team 
 #    a different color. Use gray and a smaller size for the other teams. Use plot exercise_2.png 
 #    as a guide.
